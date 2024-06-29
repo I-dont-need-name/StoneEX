@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2022 illusion <vladyslav.makarov1@nure.ua>
+# SPDX-License-Identifier: LGPL-2.0-or-later
+
+File=stoneexconfig.kcfg
+ClassName=StoneEXConfig
+Mutators=true
+DefaultValueGetters=true
+GenerateProperties=true
+ParentInConstructor=true
+Singleton=true

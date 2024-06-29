@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="main.qml">contents/ui/main.qml</file>
+        <file alias="About.qml">contents/ui/About.qml</file>
+        <file alias="StonePage.qml">contents/ui/StonePage.qml</file>
+        <file alias="CollectionPage.qml">contents/ui/CollectionPage.qml</file>
+        <file alias="MineralPage.qml">contents/ui/MineralPage.qml</file>
+        <file alias="EventPage.qml">contents/ui/EventPage.qml</file>
+        <file alias="AddMineralPage.qml">contents/ui/AddMineralPage.qml</file>
+        <file alias="AddCollectionPage.qml">contents/ui/AddCollectionPage.qml</file>
+        <file alias="AddEventPage.qml">contents/ui/AddEventPage.qml</file>
+        <file alias="ViewCollectionPage.qml">contents/ui/ViewCollectionPage.qml</file>
+        <file alias="ViewMineralPage.qml">contents/ui/ViewMineralPage.qml</file>
+        <file alias="ViewEventPage.qml">contents/ui/ViewEventPage.qml</file>
+        <file alias="ImageGenPage.qml">contents/ui/ImageGenPage.qml</file>
+        <file>res/stone.png</file>
+        <file alias="AddStonePage.qml">contents/ui/AddStonePage.qml</file>
+        <file alias="ViewStonePage.qml">res/ViewStonePage.qml</file>
+    </qresource>
+</RCC>

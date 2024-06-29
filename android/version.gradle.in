@@ -1,0 +1,7 @@
+// SPDX-FileCopyrightText: 2022 illusion <vladyslav.makarov1@nure.ua>
+// SPDX-License-Identifier: BSD-3-Clause
+
+ext {
+    projectVersionFull = "@PROJECT_VERSION@"
+}
+

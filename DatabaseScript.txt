@@ -1,0 +1,67 @@
+ CREATE TABLE Minerals(
+	Mineral_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	Mineral_name TEXT NOT NULL,
+	Mineral_desc TEXT NOT NULL,
+	Mineral_type TEXT NOT NULL,
+	Mineral_valuability INTEGER NOT NULL DEFAULT 0,
+	Mineral_hardness INTEGER NOT NULL
+);
+
+CREATE TABLE Stones(
+	Stone_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	Stone_name TEXT NOT NULL,
+	Stone_description TEXT NOT NULL,
+	Stone_color TEXT NOT NULL,
+	Stone_origin TEXT NOT NULL,
+	Stone_price REAL NOT NULL DEFAULT 0,
+	Stone_shape TEXT,
+	Stone_weight INTEGER NOT NULL DEFAULT 0,
+	Stone_image TEXT
+);
+
+CREATE TABLE "Stone-Minerals" (
+	Stone_id INTEGER NOT NULL,
+	Mineral_id INTEGER NOT NULL,
+	CONSTRAINT FK1 FOREIGN KEY (Stone_id) REFERENCES Stones(Stone_id) ON DELETE CASCADE,
+	CONSTRAINT FK2 FOREIGN KEY (Mineral_id) REFERENCES Minerals(Mineral_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Collections(
+	Collection_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	Collection_name TEXT NOT NULL,
+	Collection_description TEXT
+);
+
+CREATE TABLE "Stone-Collection" (
+	Stone_id INTEGER NOT NULL,
+	Collection_id INTEGER NOT NULL,
+	CONSTRAINT FK1 FOREIGN KEY (Stone_id) REFERENCES Stones(Stone_id) ON DELETE CASCADE,
+	CONSTRAINT FK2 FOREIGN KEY (Collection_id) REFERENCES Collections(Collection_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Events (
+	Event_id INTEGER PRIMARY KEY AUTOINCREMENT,
+	Event_name TEXT NOT NULL,
+	Event_description TEXT NOT NULL,
+	Event_collection INTEGER NOT NULL,
+	Event_country TEXT NOT NULL,
+	Event_city TEXT NOT NULL,
+	Event_address TEXT NOT NULL,
+	Event_date_start TEXT NOT NULL,
+	Event_date_end TEXT NOT NULL,
+	Event_time_open TEXT NOT NULL,
+	Event_time_close TEXT NOT NULL,
+	Event_revenue REAL NOT NULL DEFAULT 0,
+	Event_ticket REAL NOT NULL DEFAULT 0,
+	Event_link TEXT,
+	Event_image TEXT,
+
+	CONSTRAINT Fk FOREIGN KEY (Event_collection) REFERENCES Collections(Collection_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Expenses (
+	Event_id INTEGER NOT NULL,
+	Expense_name TEXT NOT NULL,
+	Expense_value REAL NOT NULL,
+	CONSTRAINT FK FOREIGN KEY (Event_id) REFERENCES Events(Event_id) ON DELETE CASCADE
+);

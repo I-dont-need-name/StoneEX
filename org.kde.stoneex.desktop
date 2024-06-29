@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: 2022 illusion <vladyslav.makarov1@nure.ua>
+[Desktop Entry]
+Name=StoneEX
+Comment=StoneEX Kirigami Application
+Version=1.0
+Exec=stoneex
+Icon=applications-development
+Type=Application
+Terminal=false
+# Add an actual main category here (and possibly applicable additional ones)
+#   https://specifications.freedesktop.org/menu-spec/latest/apa.html#main-category-registry
+Categories=Qt;KDE;
