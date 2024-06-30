@@ -67,6 +67,13 @@ if (ANDROID)
         help-about
         application-exit
         applications-graphics
+        view-list-icons
+        tag-events
+        view-refresh
+        viewimage
+        dialog-cancel
+        edit-rename
+        answer
     )
 
     ecm_add_android_apk(stoneex ANDROID_DIR ${CMAKE_SOURCE_DIR}/android)
