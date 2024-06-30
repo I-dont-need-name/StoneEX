@@ -1,5 +1,5 @@
 /*
-    SPDX-FileCopyrightText: 2022 illusion <vladyslav.makarov1@nure.ua>
+    SPDX-FileCopyrightText: 2024 illusion <vladmak04@gmail.com>
     SPDX-License-Identifier: BSD-3-Clause
 */
 
@@ -10,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.4'
+        classpath 'com.android.tools.build:gradle:7.0.2'
     }
 }
 
@@ -71,6 +71,10 @@ android {
     defaultConfig {
         minSdkVersion qtMinSdkVersion
         targetSdkVersion qtTargetSdkVersion
+        applicationId "ua.nure.makarov.stoneex"
+        namespace "ua.nure.makarov.stoneex"
+        versionCode timestamp
+        versionName projectVersionFull
         manifestPlaceholders = [versionName: projectVersionFull, versionCode: timestamp]
     }
 
