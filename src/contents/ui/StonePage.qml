@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15 as Controls
-import QtQuick.Layouts 1.15
-import org.kde.kirigami 2.19 as Kirigami
+import QtQuick
+import QtQuick.Controls as Controls
+import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
 import org.kde.StoneEX 1.0
 import ua.nure.makarov.StoneEX 1.0 as Backend
 import SqlUtils 1.0
@@ -115,21 +115,22 @@ Kirigami.ScrollablePage{
         id: localStoneModel
         myQuery: "SELECT * FROM Stones"
     }
+    actions: [
+        Kirigami.Action {
+            icon.name: "list-add"
+            text: "Add stone"
+            onTriggered: pageStack.layers.push('qrc:AddStonePage.qml')
+        },
 
-    actions.main: Kirigami.Action {
-        iconName: "list-add"
-        text: "Add stone"
-        onTriggered: pageStack.layers.push('qrc:AddStonePage.qml')
-    }
-    actions.right: Kirigami.Action {
-        id: actionRefresh
-        iconName: "view-refresh"
-        text: "Refresh"
-        onTriggered: {
-            localStoneModel.refreshModel();
+        Kirigami.Action {
+            id: actionRefresh
+            icon.name: "view-refresh"
+            text: "Refresh"
+            onTriggered: {
+                localStoneModel.refreshModel();
+            }
         }
-    }
-
+    ]
     ListView
     {
         id: stoneListView
@@ -137,14 +138,20 @@ Kirigami.ScrollablePage{
         spacing: 30
         z:1
 
-        header: Kirigami.ItemViewHeader {
+        //headerPositioning: ListView.OverlayHeader
+
+        header: Kirigami.InlineViewHeader {
             id: listHeader
-            backgroundImage.source: "res/stone.png"
-            backgroundImage.fillMode: Image.PreserveAspectCrop
-            minimumHeight: Kirigami.Units.gridUnit * 6
-            title: "Stones"
+            z: 3
+            //backgroundImage.source: "res/stone.png"
+            //backgroundImage.fillMode: Image.PreserveAspectCrop
+            //minimumHeight: Kirigami.Units.gridUnit * 6
+            height: Kirigami.Units.gridUnit * 8
+            text: "Stones"
+
             Kirigami.SearchField{
                 id: nameSearch
+                anchors.top: parent.top
                 placeholderText: "Look in names"
                 onEditingFinished: {
                     page.nameCondition = text
@@ -153,6 +160,7 @@ Kirigami.ScrollablePage{
             Kirigami.SearchField{
                 id: descSearch
                 anchors.left: nameSearch.right
+                anchors.top: parent.top
                 placeholderText: "Look in descriptions"
                 onEditingFinished: {
                     descCondition = text
@@ -161,6 +169,7 @@ Kirigami.ScrollablePage{
             Kirigami.SearchField{
                 id: colorSearch
                 anchors.left: descSearch.right
+                anchors.top: parent.top
                 placeholderText: "Look through colors"
                 onEditingFinished: {
                     colorCondition = text
@@ -169,6 +178,7 @@ Kirigami.ScrollablePage{
             Kirigami.SearchField{
                 id: originSearch
                 anchors.left: colorSearch.right
+                anchors.top: parent.top
                 placeholderText: "Find stones from..."
                 onEditingFinished: {
                     originCondition = text
@@ -178,6 +188,7 @@ Kirigami.ScrollablePage{
                 id: priceLabel
                 fontSizeMode: Text.Fit
                 anchors.top: nameSearch.bottom
+                anchors.left: parent.left
                 text: "Price: "
             }
             Controls.TextField{
@@ -286,6 +297,7 @@ Kirigami.ScrollablePage{
 
                 anchors.margins: Kirigami.Units.smallSpacing
                 anchors.top: priceLabel.bottom
+                anchors.left: parent.left
                 anchors.verticalCenter: mineralSelectionButton.verticalCenter
                 text: "Minerals:"
             }
@@ -350,9 +362,6 @@ Kirigami.ScrollablePage{
                 }
             }
         }
-
-        headerPositioning: ListView.OverlayHeader
-
 
         model: localStoneModel
 
