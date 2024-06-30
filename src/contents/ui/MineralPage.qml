@@ -86,19 +86,23 @@ Kirigami.ScrollablePage{
         id: localMineralModel
     }
 
-    actions.main: Kirigami.Action {
-        iconName: "list-add"
-        text: "Add Mineral"
-        onTriggered: pageStack.layers.push('qrc:AddMineralPage.qml')
-    }
-    actions.right: Kirigami.Action {
-        id: actionRefresh
-        iconName: "view-refresh"
-        text: "Refresh"
-        onTriggered: {
-            localMineralModel.refreshModel();
-        }
-    }
+    actions: [
+        Kirigami.Action {
+                icon.name: "list-add"
+                text: "Add Mineral"
+                onTriggered: pageStack.layers.push('qrc:AddMineralPage.qml')
+        },
+
+        Kirigami.Action {
+                id: actionRefresh
+                icon.name: "view-refresh"
+                text: "Refresh"
+                onTriggered: {
+                    localMineralModel.refreshModel();
+                }
+            }
+    ]
+
 
     ListView
     {
@@ -106,13 +110,36 @@ Kirigami.ScrollablePage{
         interactive: true
 
         spacing: 30
-        clip: false
 
-        header: Kirigami.ItemViewHeader {
+        headerPositioning: ListView.OverlayHeader
+
+        header: Item{
+            z: 3
+            width: page.width
+            height: listHeader.height
+
+            Rectangle {
+                anchors.fill: listHeader
+                color: palette.alternateBase
+            }
+
+            GridLayout {
+
+
+            rowSpacing: 20
+            columnSpacing: 6
             id: listHeader
-            minimumHeight: Kirigami.Units.gridUnit * 8
-            backgroundImage.source: "res/stone.png"
-            title: page.title
+
+            flow: GridLayout.LeftToRight
+            rows: 4
+            columns: 3
+
+            width: page.width
+
+            //minimumHeight: Kirigami.Units.gridUnit * 8
+            //backgroundImage.source: "res/stone.png"
+            //title: page.title
+
             Kirigami.SearchField{
                 id: nameSearch
                 placeholderText: "Look in names"
@@ -123,14 +150,14 @@ Kirigami.ScrollablePage{
             }
             Kirigami.SearchField{
                 id: descSearch
-                anchors.left: nameSearch.right
+                //anchors.left: nameSearch.right
                 placeholderText: "Look in descriptions"
                 onTextChanged: {
                     descCondition = text
                 }
             }
             Controls.ComboBox{
-                anchors.left: typeSearch.right
+                //anchors.left: typeSearch.right
                 id: sortSearch
                 model: [
                             "↓Назва",
@@ -155,7 +182,7 @@ Kirigami.ScrollablePage{
             }
             Controls.Button{
                 id: finder
-                anchors.left: sortSearch.right
+                //anchors.left: sortSearch.right
                 implicitHeight: sortSearch.height
                 text: "Find"
                 icon.name: "search"
@@ -165,8 +192,8 @@ Kirigami.ScrollablePage{
                 }
             }
             Controls.ComboBox{
-                //anchors.top: nameSearch.bottom
-                anchors.left: descSearch.right
+                // //anchors.top: nameSearch.bottom
+                //anchors.left: descSearch.right
                 id: typeSearch
                 model: ["Тип (не обрано)", "Осадовий", "Магматичний", "Магматично-метасоматичний", "Метаморфічний", "Метаморфічно-метосоматичний", "Органічний"]
                 onCurrentIndexChanged:{
@@ -180,17 +207,20 @@ Kirigami.ScrollablePage{
                     }
                 }
             }
+            Item{
+                height: hardnessLabel.height + hardnessSearch.height
+                width: Math.max(hardnessLabel.width, hardnessSearch.width)
             Controls.Label{
                 id: hardnessLabel
-                anchors.top: nameSearch.bottom
-                anchors.left: parent.left
+                anchors.bottom: hardnessSearch.top
+                //anchors.left: parent.left
                 text: "Hardness: " + Math.ceil(hardnessSearch.first.value) + " to " + Math.ceil(hardnessSearch.second.value);
             }
             Controls.RangeSlider{
                 id: hardnessSearch
 
-                anchors.top: hardnessLabel.bottom
-                anchors.left: parent.left
+                //anchors.top: hardnessLabel.bottom
+                //anchors.left: parent.left
                 stepSize: 1.0
                 from: 1.0
                 to: 10.0
@@ -206,18 +236,23 @@ Kirigami.ScrollablePage{
                 }
 
             }
+            }
+            Item{
+                height: valueLabel.height + valueSearch.height
+                width: Math.max(valueLabel.width, valueSearch.width)
             Controls.Label{
                 id: valueLabel
-                width: descSearch.width
-                anchors.top: descSearch.bottom
-                anchors.left: hardnessSearch.right
+                //width: descSearch.width
+                //anchors.top: descSearch.bottom
+                //anchors.left: hardnessSearch.right
+                anchors.bottom: valueSearch.top
                 text: valueToString(Math.ceil(valueSearch.first.value)) + " - " + valueToString(Math.ceil(valueSearch.second.value));
             }
             Controls.RangeSlider{
                 id: valueSearch
 
-                anchors.top: valueLabel.bottom
-                anchors.left: hardnessSearch.right
+                //anchors.top: valueLabel.bottom
+                //anchors.left: hardnessSearch.right
                 stepSize: 1.0
                 from: 0
                 to: 6
@@ -232,10 +267,11 @@ Kirigami.ScrollablePage{
                     valueConditionMax = Math.ceil(second.value)
                 }
             }
+            }
             Controls.Button{
                 id: searchResetButton
-                anchors.right: finder.right
-                anchors.top: descSearch.bottom
+                //anchors.right: finder.right
+                //anchors.top: descSearch.bottom
                 text: "Reset filters"
                 icon.name: "edit-reset"
                 onClicked: {
@@ -250,15 +286,14 @@ Kirigami.ScrollablePage{
                 }
             }
         }
-
-        headerPositioning: ListView.OverlayHeader
+        }
 
         model: localMineralModel
 
         delegate: Kirigami.AbstractCard {
            width: parent.width * 0.95
            anchors.horizontalCenter: parent.horizontalCenter
-
+           z: 1
            clip: true
            contentItem:
             Item {
@@ -372,7 +407,6 @@ Kirigami.ScrollablePage{
                         }
                     }
                 }
-
             }
        }
 }
