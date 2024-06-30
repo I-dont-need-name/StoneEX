@@ -20,6 +20,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMPoQmTools)
+include(ECMAddAndroidApk)
 
 ecm_setup_version(${PROJECT_VERSION}
     VARIABLE_PREFIX STONEEX
