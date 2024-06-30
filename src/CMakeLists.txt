@@ -67,6 +67,9 @@ if (ANDROID)
         application-exit
         applications-graphics
     )
+
+    ecm_add_android_apk(stoneex ANDROID_DIR ${CMAKE_SOURCE_DIR}/android)
+
 endif()
 
 kconfig_add_kcfg_files(stoneex GENERATE_MOC stoneexconfig.kcfgc)
