@@ -33,7 +33,7 @@ public:
 
     QString myQuery;
 
-public slots:
+public Q_SLOTS:
 
     Q_INVOKABLE void refreshModel()
     {
@@ -43,7 +43,7 @@ public slots:
         endResetModel();
     };
 
-signals:
+Q_SIGNALS:
     void myQueryChanged();
 };
 

@@ -8,6 +8,9 @@
 #include <QDomDocument>
 #include <QDomElement>
 
+#undef QT_NO_CAST_FROM_ASCII
+
+
 DocumentBuilder::DocumentBuilder(QObject *parent) : QObject{parent}
 {}
 
@@ -20,7 +23,7 @@ void DocumentBuilder::buildStoneDocument(int stone_id)
 {
     // Запит на отримання інформації про камінь
     QSqlQuery getter;
-    getter.prepare("SELECT Stone_name, Stone_description, Stone_color, Stone_origin, Stone_shape, Stone_weight FROM Stones WHERE Stone_id=:id");
+    getter.prepare(QString::fromUtf8("SELECT Stone_name, Stone_description, Stone_color, Stone_origin, Stone_shape, Stone_weight FROM Stones WHERE Stone_id=:id"));
     getter.bindValue(":id", stone_id);
 
     //Назви колонок

@@ -1,6 +1,8 @@
 #ifndef DOCUMENTBUILDER_H
 #define DOCUMENTBUILDER_H
 
+#undef QT_NO_CAST_FROM_ASCII
+
 #include <QQmlEngine>
 #include <qobject.h>
 #include <QDomDocument>

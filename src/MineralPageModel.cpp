@@ -1,4 +1,5 @@
 #include "MineralPageModel.h"
+#undef QT_NO_CAST_FROM_ASCII
 
 const int MineralPageModel::DescriptionRole = Qt::UserRole+1;
 const int MineralPageModel::TypeRole = Qt::UserRole+2;

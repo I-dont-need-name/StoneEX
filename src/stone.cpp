@@ -2,7 +2,7 @@
 #include "qsqlquery.h"
 #include "qsqlrecord.h"
 #include "qvariant.h"
-
+#include <QObject>
 
 Stone::Stone()
 {
@@ -18,7 +18,7 @@ void Stone::setStone_id(int newStone_id)
 {
     stone_id = newStone_id;
 
-    QString query = "SELECT * FROM Stones WHERE Stone_id=" + QString::number(stone_id);
+    QString query = QString::fromUtf8("SELECT * FROM Stones WHERE Stone_id=") + QString::number(stone_id);
     QSqlQuery getter = QSqlQuery(query);
     getter.first();
     QSqlRecord record = getter.record();
@@ -32,7 +32,7 @@ void Stone::setStone_id(int newStone_id)
     setWeigth(record.value(7).toInt());
     setImage(record.value(8).toString());
 
-    emit stone_idChanged();
+    Q_EMIT stone_idChanged();
 
 }
 
@@ -46,7 +46,7 @@ void Stone::setName(const QString &newName)
     if (name == newName)
         return;
     name = newName;
-    emit nameChanged();
+    Q_EMIT nameChanged();
 }
 
 const QString &Stone::getDescription() const
@@ -59,7 +59,7 @@ void Stone::setDescription(const QString &newDescription)
     if (description == newDescription)
         return;
     description = newDescription;
-    emit descriptionChanged();
+    Q_EMIT descriptionChanged();
 }
 
 const QString &Stone::getColor() const
@@ -72,7 +72,7 @@ void Stone::setColor(const QString &newColor)
     if (color == newColor)
         return;
     color = newColor;
-    emit colorChanged();
+    Q_EMIT colorChanged();
 }
 
 const QString &Stone::getOrigin() const
@@ -85,7 +85,7 @@ void Stone::setOrigin(const QString &newOrigin)
     if (origin == newOrigin)
         return;
     origin = newOrigin;
-    emit originChanged();
+    Q_EMIT originChanged();
 }
 
 double Stone::getPrice() const
@@ -98,7 +98,7 @@ void Stone::setPrice(double newPrice)
     if (qFuzzyCompare(price, newPrice))
         return;
     price = newPrice;
-    emit priceChanged();
+    Q_EMIT priceChanged();
 }
 
 const QString &Stone::getShape() const
@@ -111,7 +111,7 @@ void Stone::setShape(const QString &newShape)
     if (shape == newShape)
         return;
     shape = newShape;
-    emit shapeChanged();
+    Q_EMIT shapeChanged();
 }
 
 int Stone::getWeigth() const
@@ -124,7 +124,7 @@ void Stone::setWeigth(int newWeigth)
     if (weigth == newWeigth)
         return;
     weigth = newWeigth;
-    emit weigthChanged();
+    Q_EMIT weigthChanged();
 }
 
 const QString &Stone::getImage() const
@@ -137,5 +137,5 @@ void Stone::setImage(const QString &newImage)
     if (image == newImage)
         return;
     image = newImage;
-    emit imageChanged();
+    Q_EMIT imageChanged();
 }

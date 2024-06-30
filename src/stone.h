@@ -1,8 +1,8 @@
 #ifndef STONE_H
 #define STONE_H
-#include "qobject.h"
 #include "qobjectdefs.h"
 #include <QString>
+#include <QObject>
 
 class Stone : public QObject
 {
@@ -29,7 +29,7 @@ public:
     const QString &getImage() const;
     void setImage(const QString &newImage);
 
-signals:
+Q_SIGNALS:
     void stone_idChanged();
     void nameChanged();
     void descriptionChanged();

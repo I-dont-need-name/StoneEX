@@ -1,4 +1,4 @@
-
+#undef QT_NO_CAST_FROM_ASCII
 
 #include <QtSql/QSqlQueryModel>
 #include <QtSql/QSqlRecord>
@@ -45,7 +45,7 @@ public:
 
     QString myQuery;
 
-public slots:
+public Q_SLOTS:
 
     Q_INVOKABLE void refreshModel()
     {
@@ -55,6 +55,6 @@ public slots:
         endResetModel();
     };
 
-signals:
+Q_SIGNALS:
     void myQueryChanged();
 };

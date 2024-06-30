@@ -3,6 +3,8 @@
 #include "qsqlrecord.h"
 #include <QVariant>
 
+#undef QT_NO_CAST_FROM_ASCII
+
 EXpenseModel::EXpenseModel(QObject *parent)
     : QSqlQueryModel{parent}
 {
@@ -49,7 +51,7 @@ void EXpenseModel::setMyQuery(const QString &newMyQuery)
     beginResetModel();
     this->setQuery(myQuery);
     endResetModel();
-    emit myQueryChanged();
+    Q_EMIT myQueryChanged();
 }
 
 int EXpenseModel::getEventID() const
@@ -61,7 +63,7 @@ void EXpenseModel::setEventID(int newEventID)
 {
     EventID = newEventID;
     this->setMyQuery("SELECT Expense_name, Expense_value FROM Expenses WHERE Event_id=" + QString::number(EventID));
-    emit eventIDChanged();
+    Q_EMIT eventIDChanged();
 }
 
 bool EXpenseModel::setData(const QModelIndex &index, const QVariant &value, int role)

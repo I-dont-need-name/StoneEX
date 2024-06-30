@@ -1,13 +1,15 @@
 #ifndef MINERAL_H
 #define MINERAL_H
 
-#include "qobjectdefs.h"
+#undef QT_NO_CAST_FROM_ASCII
+
+//#include "qobjectdefs.h"
 #include "qqml.h"
-#include <QString>
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QVariant>
 #include <QString>
+#include <QObject>
 
 class Mineral : public QObject
 {
@@ -34,7 +36,7 @@ public:
     const QString &getType() const;
     void setType(const QString &newType);
 
-signals:
+Q_SIGNALS:
     void mineral_idChanged();
     void nameChanged();
     void descriptionChanged();

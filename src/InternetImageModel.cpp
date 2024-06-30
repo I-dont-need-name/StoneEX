@@ -22,7 +22,7 @@ void InternetImageModel::setQuery(const QString &newQuery)
     if (query == newQuery)
         return;
     query = newQuery;
-    emit queryChanged();
+    Q_EMIT queryChanged();
 
     // АЛГОРИТМ ДІСТАВАННЯ ЗОБРАЖЕНЬ З Сайту Wikimedia (медіа-сховище вікіпедії). Регекси, костилі і молитви
     QNetworkAccessManager manager;
@@ -78,7 +78,7 @@ void InternetImageModel::setQuery(const QString &newQuery)
 
     for(int i = 0; i < links.size(); i++){
 
-        request.setUrl(links.at(i));
+        request.setUrl(QUrl::fromEncoded(links.at(i).toLatin1()));
         reply = manager.get(request);
 
         QEventLoop loop;
@@ -126,7 +126,7 @@ void InternetImageModel::setUrls(const QStringList &newUrls)
     if (urls == newUrls)
         return;
     urls = newUrls;
-    emit urlsChanged();
+    Q_EMIT urlsChanged();
 }
 
 QVariant InternetImageModel::data(const QModelIndex &index, int role) const

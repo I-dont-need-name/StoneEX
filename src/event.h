@@ -1,6 +1,8 @@
 #ifndef EVENT_H
 #define EVENT_H
 
+#undef QT_NO_CAST_FROM_ASCII
+
 #include <QObject>
 
 class event : public QObject
@@ -44,7 +46,7 @@ public:
     double getTotalExp() const;
     void setTotalExp(double newTotalExp);
 
-signals:
+Q_SIGNALS:
 
     void event_idChanged();
     void nameChanged();

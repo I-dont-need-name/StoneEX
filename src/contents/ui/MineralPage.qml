@@ -107,6 +107,7 @@ Kirigami.ScrollablePage{
 
         spacing: 30
         clip: false
+
         header: Kirigami.ItemViewHeader {
             id: listHeader
             minimumHeight: Kirigami.Units.gridUnit * 8

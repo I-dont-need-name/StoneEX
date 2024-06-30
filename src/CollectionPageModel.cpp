@@ -6,23 +6,26 @@ const int CollectionPageModel::IDRole = Qt::UserRole+2;
 
 CollectionPageModel::CollectionPageModel()
 {
-    QString str = "SELECT * FROM Collections";
+    QString str = QString::fromUtf8("SELECT * FROM Collections");
     this->setQuery(str);
+
+
 }
 
 QVariant CollectionPageModel::data(const QModelIndex &index, int role) const
 {
     if (role == CollectionPageModel::DescriptionRole)
     {
-        return QVariant(this->record(index.row()).value("Collection_description"));
+        return QVariant(this->record(index.row()).value(QString::fromUtf8("Collection_description")));
     }
     if (role == CollectionPageModel::IDRole)
     {
-        return QVariant(this->record(index.row()).value("Collection_id"));
+        return QVariant(this->record(index.row()).value(QString::fromUtf8("Collection_id")));
     }
     if (role == Qt::DisplayRole)
     {
-        return QVariant(this->record(index.row()).value("Collection_name"));
+        return QVariant(this->record(index.row()).value(QString::fromUtf8("Collection_name")));
+
     }
     else return QSqlQueryModel::data(index, role);
 

@@ -21,7 +21,7 @@ public:
     int getCollection_id() const;
     void setCollection_id(int newCollection_id);
 
-signals:
+Q_SIGNALS:
     void nameChanged();
     void descriptionChanged();
 

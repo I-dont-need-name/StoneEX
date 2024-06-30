@@ -1,6 +1,8 @@
 #ifndef INTERNETIMAGEMODEL_H
 #define INTERNETIMAGEMODEL_H
 
+#undef QT_NO_CAST_FROM_ASCII
+
 #include <QAbstractListModel>
 
 class InternetImageModel : public QAbstractListModel
@@ -24,7 +26,7 @@ public:
     int rowCount(const QModelIndex &parent) const override;
 
 
-signals:
+Q_SIGNALS:
     void queryChanged();
     void urlsChanged();
 

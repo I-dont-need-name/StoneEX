@@ -1,6 +1,8 @@
 #ifndef STONEPAGEMODEL_H
 #define STONEPAGEMODEL_H
 
+#undef QT_NO_CAST_FROM_ASCII
+
 #include <QtSql/QSqlQueryModel>
 #include <QtSql/QSqlRecord>
 #include <QtSql/QSqlQuery>
@@ -37,7 +39,7 @@ public:
 
     QString myQuery;
 
-public slots:
+public Q_SLOTS:
 
     Q_INVOKABLE void refreshModel()
     {
@@ -47,7 +49,7 @@ public slots:
         endResetModel();
     };
 
-signals:
+Q_SIGNALS:
     void myQueryChanged();
 };
 #endif //STONEPAGEMODEL_H

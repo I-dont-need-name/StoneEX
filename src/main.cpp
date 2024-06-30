@@ -15,7 +15,9 @@
 #include <KLocalizedContext>
 #include <KLocalizedString>
 #include <QtSql/QSqlDatabase>
+
 #include <QQuickStyle>
+#include <QtQuickControls2MaterialStyleImpl/QtQuickControls2MaterialStyleImpl>
 
 #include "StonePageModel.h"
 #include "MineralPageModel.h"
@@ -36,6 +38,7 @@
 
 #include "stoneexconfig.h"
 
+#undef QT_NO_CAST_FROM_ASCII
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -75,23 +78,23 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     App application;
     qmlRegisterSingletonInstance("org.kde.StoneEX", 1, 0, "App", &application);
 
-    QQuickStyle::setStyle("material");
+    //QQuickStyle::setStyle(QString::fromUtf8("material"));
 
-    QSqlDatabase localDB = QSqlDatabase::addDatabase("QSQLITE");
+    QSqlDatabase localDB = QSqlDatabase::addDatabase(QString::fromUtf8("QSQLITE"));
 
-    localDB.setDatabaseName("LAB_1");
+    localDB.setDatabaseName(QString::fromUtf8("LAB_1"));
     localDB.open();
 
-    QSqlQuery enableForeignKeys = QSqlQuery("PRAGMA foreign_keys = ON");
+    QSqlQuery enableForeignKeys = QSqlQuery(QString::fromUtf8("PRAGMA foreign_keys = ON"));
 
     StonePageModel* stonepagemodel = new StonePageModel();
 
     MineralPageModel* mineralpagemodel = new MineralPageModel();
 
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
-
-    engine.rootContext()->setContextProperty("StonePageModel", stonepagemodel);
-    engine.rootContext()->setContextProperty("MineralPageModel", mineralpagemodel);
+    
+    engine.rootContext()->setContextProperty(QString::fromUtf8("StonePageModel"), stonepagemodel);
+    engine.rootContext()->setContextProperty(QString::fromUtf8("MineralPageModel"), mineralpagemodel);
 
     qmlRegisterType<MineralPageModel>("ua.nure.makarov.StoneEX", 1, 0, "MineralViewModel");
     qmlRegisterType<StonePageModel>("ua.nure.makarov.StoneEX", 1, 0, "StoneViewModel");

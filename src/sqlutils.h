@@ -1,6 +1,8 @@
 #ifndef SQLUTILS_H
 #define SQLUTILS_H
 
+#undef QT_NO_CAST_FROM_ASCII
+
 #include <QQmlEngine>
 #include "qobject.h"
 

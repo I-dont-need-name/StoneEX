@@ -1,6 +1,8 @@
 #include "event.h"
 #include "qsqlrecord.h"
 
+#undef QT_NO_CAST_FROM_ASCII
+
 #include <QtSql/QSqlQuery>
 #include <QVariant>
 
@@ -56,7 +58,7 @@ void event::setEvent_id(int newEvent_id)
 
     setImage (record.value("Event_image").toString());
 
-    emit event_idChanged();
+    Q_EMIT event_idChanged();
 }
 
 QString event::getName() const
@@ -69,7 +71,7 @@ void event::setName(const QString &newName)
     if (name == newName)
         return;
     name = newName;
-    emit nameChanged();
+    Q_EMIT nameChanged();
 }
 
 QString event::getDescription() const
@@ -82,7 +84,7 @@ void event::setDescription(const QString &newDescription)
     if (description == newDescription)
         return;
     description = newDescription;
-    emit descriptionChanged();
+    Q_EMIT descriptionChanged();
 }
 
 QString event::getCountry() const
@@ -95,7 +97,7 @@ void event::setCountry(const QString &newCountry)
     if (country == newCountry)
         return;
     country = newCountry;
-    emit countryChanged();
+    Q_EMIT countryChanged();
 }
 
 QString event::getCity() const
@@ -108,7 +110,7 @@ void event::setCity(const QString &newCity)
     if (city == newCity)
         return;
     city = newCity;
-    emit cityChanged();
+    Q_EMIT cityChanged();
 }
 
 QString event::getAddress() const
@@ -121,7 +123,7 @@ void event::setAddress(const QString &newAddress)
     if (address == newAddress)
         return;
     address = newAddress;
-    emit addressChanged();
+    Q_EMIT addressChanged();
 }
 
 QString event::getDateStart() const
@@ -134,7 +136,7 @@ void event::setDateStart(const QString &newDateStart)
     if (dateStart == newDateStart)
         return;
     dateStart = newDateStart;
-    emit dateStartChanged();
+    Q_EMIT dateStartChanged();
 }
 
 QString event::getDateEnd() const
@@ -147,7 +149,7 @@ void event::setDateEnd(const QString &newDateEnd)
     if (dateEnd == newDateEnd)
         return;
     dateEnd = newDateEnd;
-    emit dateEndChanged();
+    Q_EMIT dateEndChanged();
 }
 
 QString event::getTimeOpen() const
@@ -160,7 +162,7 @@ void event::setTimeOpen(const QString &newTimeOpen)
     if (timeOpen == newTimeOpen)
         return;
     timeOpen = newTimeOpen;
-    emit timeOpenChanged();
+    Q_EMIT timeOpenChanged();
 }
 
 QString event::getTimeClose() const
@@ -173,7 +175,7 @@ void event::setTimeClose(const QString &newTimeClose)
     if (timeClose == newTimeClose)
         return;
     timeClose = newTimeClose;
-    emit timeCloseChanged();
+    Q_EMIT timeCloseChanged();
 }
 
 double event::getRevenue() const
@@ -186,7 +188,7 @@ void event::setRevenue(double newRevenue)
     if (qFuzzyCompare(revenue, newRevenue))
         return;
     revenue = newRevenue;
-    emit revenueChanged();
+    Q_EMIT revenueChanged();
 }
 
 double event::getTicket() const
@@ -199,7 +201,7 @@ void event::setTicket(double newTicket)
     if (qFuzzyCompare(ticket, newTicket))
         return;
     ticket = newTicket;
-    emit ticketChanged();
+    Q_EMIT ticketChanged();
 }
 
 QString event::getLink() const
@@ -212,7 +214,7 @@ void event::setLink(const QString &newLink)
     if (link == newLink)
         return;
     link = newLink;
-    emit linkChanged();
+    Q_EMIT linkChanged();
 }
 
 QString event::getImage() const
@@ -225,7 +227,7 @@ void event::setImage(const QString &newImage)
     if (image == newImage)
         return;
     image = newImage;
-    emit imageChanged();
+    Q_EMIT imageChanged();
 }
 
 int event::getCollection() const
@@ -238,7 +240,7 @@ void event::setCollection(int newCollection)
     if (collection == newCollection)
         return;
     collection = newCollection;
-    emit collectionChanged();
+    Q_EMIT collectionChanged();
 }
 
 double event::getTotalExp() const
@@ -251,5 +253,5 @@ void event::setTotalExp(double newTotalExp)
     if (qFuzzyCompare(totalExp, newTotalExp))
         return;
     totalExp = newTotalExp;
-    emit totalExpChanged();
+    Q_EMIT totalExpChanged();
 }

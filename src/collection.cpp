@@ -16,7 +16,7 @@ void Collection::setName(const QString &newName)
         return;
     }
     name = newName;
-    emit nameChanged();
+    Q_EMIT nameChanged();
 }
 
 const QString &Collection::getDescription() const
@@ -29,7 +29,7 @@ void Collection::setDescription(const QString &newDescription)
     if (description == newDescription)
         return;
     description = newDescription;
-    emit descriptionChanged();
+    Q_EMIT descriptionChanged();
 }
 
 int Collection::getCollection_id() const
@@ -41,11 +41,11 @@ void Collection::setCollection_id(int newCollection_id)
 {
     collection_id = newCollection_id;
 
-    QSqlQuery getter = QSqlQuery("SELECT * FROM Collections WHERE Collection_id=" + QString::number(newCollection_id) );
+    QSqlQuery getter = QSqlQuery(QString::fromUtf8("SELECT * FROM Collections WHERE Collection_id=") + QString::number(newCollection_id) );
     getter.first();
     QSqlRecord results = getter.record();
 
-    setName(results.value("Collection_name").toString());
-    setDescription(results.value("Collection_description").toString());
-    emit collection_idChanged();
+    setName(results.value(QString::fromUtf8("Collection_name")).toString());
+    setDescription(results.value(QString::fromUtf8("Collection_description")).toString());
+    Q_EMIT collection_idChanged();
 }

@@ -7,7 +7,7 @@ project(stoneex VERSION 0.1)
 
 include(FeatureSummary)
 
-set(QT6_MIN_VERSION 6.2)
+set(QT6_MIN_VERSION 6.7)
 set(KF6_MIN_VERSION 6.3.0)
 
 find_package(ECM ${KF6_MIN_VERSION} REQUIRED NO_MODULE)
@@ -27,7 +27,7 @@ ecm_setup_version(${PROJECT_VERSION}
 )
 
 find_package(Qt6 ${QT5_MIN_VERSION} REQUIRED COMPONENTS Core Gui Qml QuickControls2 Svg Sql Xml PrintSupport)
-find_package(KF6 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Kirigami2 CoreAddons Config I18n)
+find_package(KF6 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Kirigami CoreAddons Config I18n)
 
 if (ANDROID)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/android/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)

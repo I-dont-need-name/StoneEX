@@ -18,12 +18,12 @@ void Mineral::setMineral_id(int newId)
     getter.first();
     QSqlRecord record = getter.record();
 
-    setName(record.value("Mineral_name").toString());
-    setDescription(record.value("Mineral_desc").toString());
-    setType(record.value("Mineral_type").toString());
-    setValue(record.value("Mineral_valuability").toInt());
-    setHardness(record.value("Mineral_hardness").toInt());
-    emit mineral_idChanged();
+    setName(record.value(QString::fromUtf8("Mineral_name")).toString());
+    setDescription(record.value(QString::fromUtf8("Mineral_desc")).toString());
+    setType(record.value(QString::fromUtf8("Mineral_type")).toString());
+    setValue(record.value(QString::fromUtf8("Mineral_valuability")).toInt());
+    setHardness(record.value(QString::fromUtf8("Mineral_hardness")).toInt());
+    Q_EMIT mineral_idChanged();
 }
 
 const QString &Mineral::getName() const
@@ -36,7 +36,7 @@ void Mineral::setName(const QString &newName)
     if (name == newName)
         return;
     name = newName;
-    emit nameChanged();
+    Q_EMIT nameChanged();
 }
 
 const QString &Mineral::getDescription() const
@@ -49,7 +49,7 @@ void Mineral::setDescription(const QString &newDescription)
     if (description == newDescription)
         return;
     description = newDescription;
-    emit descriptionChanged();
+    Q_EMIT descriptionChanged();
 }
 
 const int &Mineral::getValue() const
@@ -62,7 +62,7 @@ void Mineral::setValue(const int &newValue)
     if (value == newValue)
         return;
     value = newValue;
-    emit valueChanged();
+    Q_EMIT valueChanged();
 }
 
 int Mineral::getHardness() const
@@ -75,7 +75,7 @@ void Mineral::setHardness(int newHardness)
     if (hardness == newHardness)
         return;
     hardness = newHardness;
-    emit hardnessChanged();
+    Q_EMIT hardnessChanged();
 }
 
 const QString &Mineral::getType() const
@@ -88,5 +88,5 @@ void Mineral::setType(const QString &newType)
     if (type == newType)
         return;
     type = newType;
-    emit typeChanged();
+    Q_EMIT typeChanged();
 }

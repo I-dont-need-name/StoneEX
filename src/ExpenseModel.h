@@ -1,6 +1,8 @@
 #ifndef EXPENSEMODEL_H
 #define EXPENSEMODEL_H
 
+#undef QT_NO_CAST_FROM_ASCII
+
 #include <QtSql/QSqlQueryModel>
 #include <QtSql/QSqlRecord>
 #include <QtSql/QSqlQuery>
@@ -28,7 +30,7 @@ public:
     int getEventID() const;
     void setEventID(int newEventID);
 
-signals:
+Q_SIGNALS:
     void myQueryChanged();
 
     void eventIDChanged();

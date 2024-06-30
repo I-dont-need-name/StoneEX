@@ -1,5 +1,8 @@
 #include "StonePageModel.h"
 
+#undef QT_NO_CAST_FROM_ASCII
+#undef QT_NO_CAST_FROM_BYTEARRAY
+#undef QT_RESTRICTED_CAST_FROM_ASCII
 
 const int StonePageModel::DescriptionRole = Qt::UserRole+1;
 const int StonePageModel::PriceRole = Qt::UserRole+2;
