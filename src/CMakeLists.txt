@@ -45,20 +45,20 @@ add_executable(stoneex
     resources.qrc)
 
 target_link_libraries(stoneex
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Widgets
-    Qt5::PrintSupport
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::QuickControls2
-    Qt5::Svg
-    Qt5::Sql
-    Qt5::Xml
-    KF5::I18n
-    KF5::CoreAddons
-    KF5::ConfigCore
-    KF5::ConfigGui)
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
+    Qt6::PrintSupport
+    Qt6::Qml
+    Qt6::Quick
+    Qt6::QuickControls2
+    Qt6::Svg
+    Qt6::Sql
+    Qt6::Xml
+    KF6::I18n
+    KF6::CoreAddons
+    KF6::ConfigCore
+    KF6::ConfigGui)
 
 if (ANDROID)
     kirigami_package_breeze_icons(ICONS
