@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15 as Controls
 import QtQuick.Layouts 1.15
 import org.kde.kirigami 2.19 as Kirigami
-import org.kde.kirigamiaddons.dateandtime 0.1 as KDT
+import org.kde.kirigamiaddons.dateandtime as KDT
 import org.kde.StoneEX 1.0
 import SqlUtils 1.0
 import DocumentBuilder 1.0
@@ -49,7 +49,7 @@ Kirigami.ScrollablePage{
         event_id: page.eventID
     }
 
-    actions.left:
+    actions: [
         Kirigami.Action {
             id: actionSave
             text: "Save"
@@ -66,16 +66,16 @@ Kirigami.ScrollablePage{
                 reset()
                 actionEdit.checked = false;
             }
-        }
-    actions.main:
+        },
+
         Kirigami.Action {
             id: actionEdit
             text: "Edit"
             icon.name: "edit-rename"
             visible: !checked
             checkable: true
-        }
-    actions.right:
+        },
+
         Kirigami.Action {
             id: actionDeny
             text: actionEdit.checked ? "Discard" : "Delete"
@@ -90,17 +90,17 @@ Kirigami.ScrollablePage{
                 promptDialog.open()
 
             }
-    }
-    actions.contextualActions: [
-        Kirigami.Action{
-            id: actionPrint
-            text: "Form Document"
-            iconName: "document-scan"
-            visible: !actionEdit.checked
-            onTriggered: {
-                DocumentBuilder.buildEventDocument(thisEvent.event_id);
-            }
+    },
+
+    Kirigami.Action{
+        id: actionPrint
+        text: "Form Document"
+        icon.name: "document-scan"
+        visible: !actionEdit.checked
+        onTriggered: {
+            DocumentBuilder.buildEventDocument(thisEvent.event_id);
         }
+    }
     ]
 
     Kirigami.PromptDialog {
@@ -213,7 +213,8 @@ Kirigami.ScrollablePage{
             text: dateStart.toLocaleDateString(locale, "dd MMMM (yyyy)") + "-" + dateEnd.toLocaleDateString(locale, "dd MMMM (yyyy)")
             visible: !actionEdit.checked
         }
-        KDT.DateInput{
+
+        KDT.DatePicker{
             id: startEdit
             selectedDate: dateStart
             visible: actionEdit.checked
@@ -223,7 +224,7 @@ Kirigami.ScrollablePage{
             visible: actionEdit.checked
             anchors.verticalCenter: startEdit.verticalCenter
         }
-        KDT.DateInput{
+        KDT.DatePicker{
             id: endEdit
             selectedDate: dateEnd
             visible: actionEdit.checked
@@ -233,18 +234,24 @@ Kirigami.ScrollablePage{
             text: thisEvent.timeOpen.slice(0,5) + " - " + thisEvent.timeClose.slice(0,5)
             visible: !actionEdit.checked
         }
-        KDT.TimeInput{
+
+        Controls.Frame{
+        KDT.TimePicker{
             id: openEdit
-            value: Date.fromLocaleTimeString(locale, thisEvent.timeOpen, "hh:mm:ss")
-            format: "hh:mm"
+            hours: Date.fromLocaleTimeString(locale, thisEvent.timeOpen, "hh")
+            minutes: Date.fromLocaleTimeString(locale, thisEvent.timeOpen, "mm")
+            //value: Date.fromLocaleTimeString(locale, thisEvent.timeOpen, "hh:mm:ss")
+            //format: "hh:mm"
             visible: actionEdit.checked
         }
-        KDT.TimeInput{
+        KDT.TimePicker{
             id: closeEdit
-            //text: thisEvent.timeClose
-            value: Date.fromLocaleTimeString(locale, thisEvent.timeClose, "hh:mm:ss")
-            format: "hh:mm"
+            hours: Date.fromLocaleTimeString(locale, thisEvent.timeClose, "hh")
+            minutes: Date.fromLocaleTimeString(locale, thisEvent.timeClose, "mm")
+            //value: Date.fromLocaleTimeString(locale, thisEvent.timeClose, "hh:mm:ss")
+            //format: "hh:mm"
             visible: actionEdit.checked
+        }
         }
     }
     Row{

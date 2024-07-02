@@ -37,19 +37,19 @@ Kirigami.ScrollablePage{
             }
         }
 
-    actions.main:
+    actions: [
         Kirigami.Action {
             id: actionEdit
             text: "Edit"
-            iconName: "edit-rename"
+            icon.name: "edit-rename"
             visible: !checked
             checkable: true
-        }
-    actions.left:
+        },
+
         Kirigami.Action {
             id: actionSave
             text: "Save"
-            iconName: "answer"
+            icon.name: "answer"
             visible: actionEdit.checked
             onTriggered: {
                 if (SqlUtils.updateCollection(thisCollection.collection_id, nameEdit.text, descEdit.text)){
@@ -62,11 +62,11 @@ Kirigami.ScrollablePage{
                     uniCounter.text = SqlUtils.countCollectionMinerals(thisCollection.collection_id) + " Unique minerals";
                 }
             }
-        }
-    actions.right:
+        },
+
         Kirigami.Action {
             text: actionEdit.checked ? "Discard" : "Delete"
-            iconName: actionEdit.checked ? "dialog-cancel" : "delete"
+            icon.name: actionEdit.checked ? "dialog-cancel" : "delete"
             visible: true
             onTriggered: {
                 if (actionEdit.checked){
@@ -77,7 +77,7 @@ Kirigami.ScrollablePage{
                 else    promptDialog.open()
             }
         }
-
+    ]
     Backend.StoneViewModel{
         id: localStoneModel
         property string query: "SELECT * FROM Stones WHERE Stone_id IN (SELECT Stone_id FROM \"Stone-Collection\" WHERE Collection_id =" + collectionID.toString() + ") AND Stone_name LIKE '%" + searcher.text + "%'"

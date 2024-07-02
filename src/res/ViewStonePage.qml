@@ -6,8 +6,8 @@ import org.kde.StoneEX 1.0
 import SqlUtils 1.0
 import DocumentBuilder 1.0
 import ua.nure.makarov.StoneEX 1.0 as Backend
-import QtQuick.Dialogs 1.3
-import QtGraphicalEffects 1.15 as Effects
+import QtQuick.Dialogs as Dialogs
+import Qt5Compat.GraphicalEffects as Effects
 
 Kirigami.ScrollablePage{
 
@@ -17,41 +17,36 @@ Kirigami.ScrollablePage{
     property var selectedMinerals: []
     title: thisStone.name
     verticalScrollBarPolicy: Qt.ScrollBarAlwaysOn
-    actions.left:
+    actions:[
         Kirigami.Action{
         id: actionPrint
         text: "Form Document"
-        iconName: "document-scan"
+        icon.name: "document-scan"
         visible: true
         onTriggered: {
             DocumentBuilder.buildStoneDocument(stoneID)
         }
-    }
-
-
-    actions.main:
-        Kirigami.Action {
+    },
+    Kirigami.Action {
             id: actionEdit
             text: "Edit"
-            iconName: "edit-rename"
+            icon.name: "edit-rename"
             visible: true
             checkable: true
-        }
-    actions.right:
-        Kirigami.Action {
+        },
+    Kirigami.Action {
             text: "Delete"
-            iconName: "delete"
+            icon.name: "delete"
             visible: true
             onTriggered: {
                 promptDialog.open()
             }
-        }
+        },
 
-    actions.contextualActions: [
         Kirigami.Action{
             id: actionFeaturedEvents
             text: "Is featured in " + SqlUtils.countStoneEvents(thisStone.stone_id) + " events"
-            iconName: "view-calendar"
+            icon.name: "view-calendar"
             onTriggered: {
                 var viewPage = Qt.createComponent("qrc:EventPage.qml").createObject(this, {externalCondition: " Event_collection IN (SELECT collection_id FROM \"Stone-Collection\" WHERE Stone_id= " + thisStone.stone_id +") ",
                                                                                          title: "Events with " + thisStone.name});
@@ -139,10 +134,10 @@ Kirigami.ScrollablePage{
             }
     }
 
-    FileDialog {
+    Dialogs.FileDialog {
         id: fileDialog
         title: "Please choose a file"
-        folder: shortcuts.home
+        currentFolder: shortcuts.home
         onAccepted: {
             console.log("You chose: " + fileDialog.fileUrl)
             preview.source = fileDialog.fileUrl.toString()

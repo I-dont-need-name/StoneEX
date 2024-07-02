@@ -50,23 +50,24 @@ Kirigami.ScrollablePage{
             }
         }
 
-    actions.main:
+    actions: [
         Kirigami.Action {
             id: actionEdit
             text: "Edit"
-            iconName: "edit-rename"
+            icon.name: "edit-rename"
             visible: true
             checkable: true
-        }
-    actions.right:
+        },
+
         Kirigami.Action {
             text: "Delete"
-            iconName: "delete"
+            icon.name: "delete"
             visible: true
             onTriggered: {
                 promptDialog.open()
             }
         }
+    ]
 
     ColumnLayout{
 

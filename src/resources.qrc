@@ -16,7 +16,5 @@
         <file>res/stone.png</file>
         <file alias="AddStonePage.qml">contents/ui/AddStonePage.qml</file>
         <file alias="ViewStonePage.qml">res/ViewStonePage.qml</file>
-        <file alias="AbstractItemViewHeader.qml">contents/ui/AbstractItemViewHeader.qml</file>
-        <file alias="ItemViewHeader.qml">contents/ui/ItemViewHeader.qml</file>
     </qresource>
 </RCC>
