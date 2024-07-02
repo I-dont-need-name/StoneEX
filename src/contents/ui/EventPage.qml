@@ -105,20 +105,21 @@ Kirigami.ScrollablePage{
         myQuery: externalCondition == "" ? "SELECT * FROM Events" : ("SELECT * FROM Events WHERE " + externalCondition)
     }
 
-    actions.main: Kirigami.Action {
-        iconName: "list-add"
+    actions: [Kirigami.Action {
+        icon.name: "list-add"
         text: "Add Event"
         onTriggered: pageStack.layers.push('qrc:AddEventPage.qml')
-    }
-    actions.right: Kirigami.Action {
+    },
+    Kirigami.Action {
         id: actionRefresh
-        iconName: "view-refresh"
+        icon.name: "view-refresh"
         text: "Refresh"
         onTriggered: {
             localEventModel.refreshModel();
 
         }
     }
+    ]
 
     ListView
     {

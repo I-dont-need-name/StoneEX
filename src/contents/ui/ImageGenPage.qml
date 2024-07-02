@@ -4,17 +4,17 @@ import QtQuick.Layouts 1.15
 import org.kde.kirigami 2.19 as Kirigami
 import org.kde.StoneEX 1.0
 import ua.nure.makarov.StoneEX 1.0 as Backend
-import QtGraphicalEffects 1.15 as Effects
-import QtQuick.Dialogs 1.3
+//import QtGraphicalEffects 1.15 as Effects
+import QtQuick.Dialogs as Dialogs
 
 Kirigami.Page{
     id: page
     title: "Media image search + generator"
 
-    FileDialog{
+    Dialogs.FileDialog{
         id: saveDialog
-        selectExisting: false
-        selectMultiple: false
+        //selectExisting: false
+        //selectMultiple: false
         nameFilters: [ "Image files (*.jpg *.png, *.jpeg)", "All files (*)" ]
         onAccepted: {
             poster.grabToImage(function (result) {
@@ -36,13 +36,15 @@ Kirigami.Page{
     property string address: "";
 
 
-    actions.main: Kirigami.Action{
-        text: "Save Image"
-        iconName: "viewimage"
-        onTriggered: {
-            saveDialog.open()
-        }
+    actions: [
+        Kirigami.Action{
+            text: "Save Image"
+            icon.name: "viewimage"
+            onTriggered: {
+                saveDialog.open()
             }
+        }
+    ]
     Backend.InternetImageModel{
         id: localImageModel
         query: page.query

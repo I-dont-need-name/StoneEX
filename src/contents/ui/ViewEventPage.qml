@@ -53,7 +53,7 @@ Kirigami.ScrollablePage{
         Kirigami.Action {
             id: actionSave
             text: "Save"
-            iconName: "answer"
+            icon.name: "answer"
             visible: actionEdit.checked
             onTriggered: {
                 var imagePath = typeof(imageGenPage)=="undefined" ? thisEvent.image : imageGenPage.selectedImageUrl
@@ -71,7 +71,7 @@ Kirigami.ScrollablePage{
         Kirigami.Action {
             id: actionEdit
             text: "Edit"
-            iconName: "edit-rename"
+            icon.name: "edit-rename"
             visible: !checked
             checkable: true
         }
@@ -79,7 +79,7 @@ Kirigami.ScrollablePage{
         Kirigami.Action {
             id: actionDeny
             text: actionEdit.checked ? "Discard" : "Delete"
-            iconName: actionEdit.checked ? "dialog-cancel" : "delete"
+            icon.name: actionEdit.checked ? "dialog-cancel" : "delete"
             visible: true
             onTriggered: {
                 if(actionEdit.checked){

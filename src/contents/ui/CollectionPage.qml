@@ -79,19 +79,21 @@ Kirigami.ScrollablePage{
         }
     }
 
-    actions.main: Kirigami.Action {
-        iconName: "list-add"
+    actions: [
+        Kirigami.Action {
+        icon.name: "list-add"
         text: "New collection"
         onTriggered: pageStack.layers.push('qrc:AddCollectionPage.qml')
-    }
-    actions.right: Kirigami.Action {
+    },
+    Kirigami.Action {
         id: actionRefresh
-        iconName: "view-refresh"
+        icon.name: "view-refresh"
         text: "Refresh"
         onTriggered: {
             localCollectionModel.refreshModel();
         }
     }
+    ]
 
 
 
